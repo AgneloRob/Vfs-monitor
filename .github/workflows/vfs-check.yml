@@ -2,23 +2,25 @@ name: Monitoramento VFS Global
 
 on:
   schedule:
-    - cron: "*/30 * * * *"  # Executa a cada 30 minutos
-  workflow_dispatch:  # Permite rodar manualmente
+    - cron: "*/10 * * * *"  # Executa a cada 10 minutos
+  workflow_dispatch:  # Permite execução manual
 
 jobs:
-  check_vfs:
+  check_vfs_slots:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Clonar repositório
-        uses: actions/checkout@v3
-
+        uses: actions/checkout@v4
+      
       - name: Configurar Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
-
+          python-version: "3.10"
+      
       - name: Instalar dependências
-        run: pip install requests beautifulsoup4
-
+        run: |
+          pip install -r requirements.txt
+      
       - name: Executar script
-  run: python monitor/monitor_vfs.py
+        run: python monitor/monitor_vfs.py
