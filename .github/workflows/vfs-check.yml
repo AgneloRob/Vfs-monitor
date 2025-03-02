@@ -21,4 +21,4 @@ jobs:
         run: pip install requests beautifulsoup4
 
       - name: Executar script
-        run: python monitor_vfs.py
+  run: python monitor/monitor_vfs.py
